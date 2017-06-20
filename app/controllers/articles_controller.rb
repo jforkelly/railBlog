@@ -12,16 +12,18 @@ def show
 
 	@article = Article.find(params[:id])
 
+	@comment = Comment.new
+
+	@comment.article_id = @article.id
+
+
 end
 
 def new
 
 	@article = Article.new
 
-	@comment = Comment.new
-
-	@comment.article_id = @article.id
-
+	
 end
 
 def create
@@ -34,6 +36,9 @@ def create
 
 	redirect_to article_path(@article)
 
+end
+
+def tag_list=(tags_string)
 end
 
 def destroy
