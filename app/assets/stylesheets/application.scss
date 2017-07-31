@@ -1,0 +1,53 @@
+body {
+	background-image: url("triptree.jpg");
+	background-repeat: no-repeat;	
+}
+
+nav {
+background-color: black
+}
+
+li {
+	padding: 10px;
+}
+
+.btn {
+	background-color: #813772;
+	font-color: white;
+}
+
+.container {
+	box-shadow: 10px 10px 5px grey;
+	margin: 5%;
+}
+
+#articles {
+	padding: 10px;
+	margin: 5%;
+}
+
+
+#posts {
+	position: center;
+	margin: 2%;
+	padding: 10px;
+	height: 300px;
+	width: 300px;
+	border: 1px grey;
+	border-style: dashed;
+	background-repeat: no-repeat;
+	font-weight: bold;
+	
+}
+
+#attachment_thumb {
+	position: center
+}
+
+#offset {
+	margin-left: 40%;
+}
+
+
+
+@import "bootstrap";

@@ -1,15 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JfkBlog</title>
+    <title>Jfk</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>    
+
+<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
+
   </head>
 
   <body>
-    <p class="flash"><%= flash.notice %></p>
-    <%= yield %>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <button type="button" class="btn btn-default navbar-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+	MENU
+      </button>
+
+      <a class="navbar-brand" href="/articles">JFK.com</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/articles">Posts <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Pictures</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Music</a></li>
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Literature</a></li>
+          </ul>
+        </li>
+      </ul>
+      </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+    <p class="flash">
+    <%= flash.notice %>
+  </p>
+  <div class="row">
+    <div class="col-md-12">
+      <%= yield %>
+    </div>
+  </div>
+</br>
+    <div class="row">
+		<div class="col-md-12">
+      <h6>
+        <% if logged_in? %>
+          <%= "Logged in as #{current_user.email}" %>
+          <%= link_to "(logout)", logout_path %>
+        <% else %>
+          <%= link_to "(login)", login_path %>
+        <% end %>
+      </h6>
+    </div>
+  </div>
+
   </body>
 </html>

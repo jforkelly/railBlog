@@ -1,17 +1,67 @@
-<h1><%= @article.title %></h1>
-<p>
-	Tags:
-	<%= @article.tags.each do |tag| %>
-	<%= link_to tag.name, tag_path(tag) %>
-	<% end %>
-</p>
-<p><%= @article.body %></p>
 
-<%= render partial: 'comments/form' %>
+<div class="container fluid-container">
 
-<%= link_to "<< Back to Articles List", articles_path %>
-<%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"} %>
-<%= link_to "edit", edit_article_path(@article)%>
+	<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="col-md-8">
+			<h1><%= @article.title %></br></h1>
+			<h4>
+					<%= @article.tags.each do |tag| %>
+						<%= link_to tag.name, tag_path(tag) %>
+					<% end %>
+			</h4>
+		</div>
+	</div>
+	<div class="col-md-2"></div>
+</div>
+</div>
+<div >
+			
+		<div id="wrapper" style="width:100%; text-align:center">
+				<%= image_tag @article.attachment.url(:jumbo) if @article.attachment? %>
+		</div>
+</div>
+<div class="container fluid-container">
 
-<h3>Comments (<%= @article.comments.size %>)</h3>
-<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+	<div class="row">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<div class="col-md-8">
+		<br/>
+		<div>
+			<p>
+				<%= @article.body %>
+			</p>
+		</div>
+		<div>
+			<ul class="nav nav-pills" id="options">
+				<li role="presentation" class="active"><%= link_to "Back.", articles_path %></li>
+				<li role="presentation" class="active">
+					<% if logged_in? %>
+					<%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "Really delete the article?"} %>
+					<% end %>
+				</li>
+				<li role="presentation" class="active">
+					<% if logged_in? %>
+					<%= link_to "edit", edit_article_path(@article)%>
+					<% end %>
+				</li>
+			</ul>
+		</div>
+		<div>
+		<%= render partial: 'comments/form' %>
+		</div>
+		<div>
+		<h3>Comments (<%= @article.comments.size %>)</h3>
+		</div>
+		<div>
+		<%= render partial: 'articles/comment', collection: @article.comments.reverse %>
+		</div>
+	</div>
+	<div class="col-md-2"></div>
+	</div> <!-- the shit -->
+
+
+</div>
+

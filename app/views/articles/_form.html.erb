@@ -1,22 +1,64 @@
-<%= form_for(@article) do |f| %>
+<%= form_for(@article, html: {multipart: true}) do |f| %>
+	
+
+
 	<ul>
 	<% @article.errors.full_messages.each do |error| %>
 		<li><%= error %></li>
 	<%end %>
 	</ul>
-	<p>
-		<%= f.label :title %><br />
-		<%= f.text_field :title %>
-	</p>
-	<p>
-		<%= f.label :body %><br />
-		<%= f.text_area :body %>
-	</p>
-	<p>
-		<%= f.submit %>
-	</p>
-	<p>
-		<%= f.label :tag_list %><br />
-		<%= f.text_field :tag_list %>
-	</p>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-6">
+		<p>
+			<%= f.label :title %><br />
+			<%= f.text_field :title %>
+		</p>
+		</div>
+	</div> <!-- title row -->
+
+	<div class="row">
+		<div class="col-md-6">
+			<p>
+				<%= f.label :body %><br />
+				<%= f.text_area :body %>
+			</p>
+		</div>
+		<div class="col-md-6">
+			<p>
+
+	 		 <%= f.file_field :attachment%>
+	 		 <%= f.label :attachment, "Attach a New Image" %>
+	 		 <%= attachment_tag (@article.attachment_url) if @article.attachment? %>	  
+	 		 <%= f.hidden_field :attachment_cache %>
+	  
+			</p>
+		</div>	
+	</div> <!-- body row -->
+
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<ul class="nav nav-pills">
+				<li role="presentation" class="active">
+					<label>
+					<%= f.check_box :remove_attachment %> Remove image
+					</label>
+				</li>
+				<li role="presentation" class="active">
+					<%= f.label :tag_list %> 
+					<%= f.text_field :tag_list %>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-2"></div>
+	</div> <!-- finishing touches row -->
+
+<div class="row">
+<div class="col-md-2 "><%= f.submit %></div>
+</div>
+
+</div> <!-- container -->
 <% end %>

@@ -1,13 +1,44 @@
-<h1>All Articles</h1>
+<div class="jumbotron">
+  	<h1>Hello, I'm John</h1>
+  	<p>Please hire me</p>
+  	<p><a class="btn btn-primary btn-lg" href="#" role="button">Resume</a></p>
+</div>
 
-<ul id="articles">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div style=" background-color:#000000">k</div><div style="background-color: #062F4F">k</div><div style="background-color: #813772">k</div><div style="background-color: #B82601">k</div>
+		<h1>All Posts</h1>
+		<br/>
+		<div class="col-md-2"></div>
+	</div> <!-- header row -->
+
+
+
+<div class="row" id="articles">
+		<div class="col-md-2"></div>
 	<% @articles.each do |article| %>
-		<li>
+		<div class=" col-xs-8 col-md-2" id="posts">
+			<h3 id="attachment_thumb">
+			<%= image_tag article.attachment.url(:thumb) if article.attachment? %>
 			<%= link_to article.title, article_path(article), 
 				class: 'article_title', id: "article_#{article.id}" %>
-				
-		</li>
+			</h3>
+		</div>
 	<% end %>
-</ul>
+		<div class="col-md-2"></div>
+</div>
+<br/>
+</div><!-- container -->
 
-<%= link_to "Create a New Article", new_article_path, class:"new_article" %>
+<div class=container-fluid">
+	<div class="row" id="offset">
+
+		<div class="btn btn-secondary">
+			<% if logged_in? %>
+			<%= link_to "Create a New Article", new_article_path, class:"new_article" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
